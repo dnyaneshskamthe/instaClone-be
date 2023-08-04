@@ -5,11 +5,9 @@ const mongoose = require('mongoose')
 const Post = require('./model/post')
 const cors = require('cors');
 const port = process.env.PORT || 5000;
-const MONGO_URL = process.env.MONGO_URL;
-
 
 // const upload=require('./multer')
-// const path=require('path');
+const path=require('path');
 const dotenv = require('dotenv')
 // const cloudinary=require('./cloudinary');
 dotenv.config();
@@ -34,16 +32,15 @@ app.get('/', (req, res) => {
 });
 
 
-async function connectDB(){
-    
+//connect to databasea
+async function connectDB(){ 
     try {
-       await  mongoose.connect(MONGO_URL);
+       await  mongoose.connect(process.env.MONGODB_URL);
     } catch (error) {
         console.log(error);
         throw error("Database connection failed");
     }
 }
-
 
 async function main(){
 
